@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TikTok Hediye → Minecraft Gösterim</title>
+<style>
+    body { background: #111; color: white; font-family: Arial; text-align: center; }
+    #giftArea { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    .icon {
+        width: 64px; height: 64px;
+        margin: 5px;
+        background-size: cover;
+    }
+    .zombie { background-image: url('https://minecraft.wiki/images/Zombie_JE2_BE2.png'); }
+    .creeper { background-image: url('https://minecraft.wiki/images/Creeper_JE2_BE2.png'); }
+</style>
+</head>
+<body>
+
+<h1>🎁 TikTok Hediyeleri</h1>
+<div id="giftArea"></div>
+
+<script>
+function addGift(type) {
+    const giftArea = document.getElementById("giftArea");
+    if (type === "gul") { // 1 gül = 1 zombi
+        spawnIcon("zombie", 1);
+    }
+    if (type === "benisev") { // 1 beni sev = 1 creeper
+        spawnIcon("creeper", 1);
+    }
+    if (type === "tac") { // 1 taç = 20 zombi + 10 creeper
+        spawnIcon("zombie", 20);
+        spawnIcon("creeper", 10);
+    }
+    if (type === "fil") { // 1 fil hortumu = yayını kapat
+        alert("🐘 Fil hortumu geldi! Yayın kapatılıyor...");
+        giftArea.innerHTML = "";
+    }
+}
+
+function spawnIcon(iconType, count) {
+    const giftArea = document.getElementById("giftArea");
+    for (let i = 0; i < count; i++) {
+        const div = document.createElement("div");
+        div.className = "icon " + iconType;
+        giftArea.appendChild(div);
+    }
+}
+
+// DEMO: hediyeleri test et
+setTimeout(() => addGift("gul"), 1000);
+setTimeout(() => addGift("benisev"), 2000);
+setTimeout(() => addGift("tac"), 3000);
+setTimeout(() => addGift("fil"), 5000);
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TikTok Hediye → Minecraft Gösterim</title>
+<style>
+    body {
+        background: #111;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
+    #giftArea {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 10px;
+        gap: 8px;
+    }
+    .icon {
+        width: 72px;
+        height: 72px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        animation: popIn 0.6s ease forwards;
+    }
+
+    /* Animasyonlar */
+    @keyframes popIn {
+        0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+        60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+        100% { transform: scale(1) rotate(0deg); }
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+    .icon:hover {
+        animation: bounce 0.6s ease infinite;
+    }
+
+    /* Yüksek çözünürlüklü mob resimleri */
+    .zombie {
+        background-image: url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b9/ZombieFace.png');
+    }
+    .creeper {
+        background-image: url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/51/CreeperFace.png');
+    }
+</style>
+</head>
+<body>
+
+<h1>🎁 TikTok Hediyeleri</h1>
+<div id="giftArea"></div>
+
+<script>
+function addGift(type) {
+    if (type === "gul") { spawnIcon("zombie", 1); }
+    if (type === "benisev") { spawnIcon("creeper", 1); }
+    if (type === "tac") { spawnIcon("zombie", 20); spawnIcon("creeper", 10); }
+    if (type === "fil") { 
+        alert("🐘 Fil hortumu geldi! Yayın kapatılıyor...");
+        document.getElementById("giftArea").innerHTML = "";
+    }
+}
+
+function spawnIcon(iconType, count) {
+    const giftArea = document.getElementById("giftArea");
+    for (let i = 0; i < count; i++) {
+        // Max 20 ikon tut
+        if (giftArea.children.length >= 20) {
+            giftArea.removeChild(giftArea.firstChild);
+        }
+        const div = document.createElement("div");
+        div.className = "icon " + iconType;
+        giftArea.appendChild(div);
+    }
+}
+
+// Test animasyonları (Gerçek yayında API'den çağrılır)
+setTimeout(() => addGift("gul"), 1000);
+setTimeout(() => addGift("benisev"), 2000);
+setTimeout(() => addGift("tac"), 3000);
+setTimeout(() => addGift("fil"), 5000);
+</script>
+
+</body>
+</html>
